@@ -1,0 +1,22 @@
+PODS:
+  - faketooth (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - faketooth (from `.symlinks/plugins/faketooth/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  faketooth:
+    :path: ".symlinks/plugins/faketooth/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  faketooth: ef092be8395bd70f4c5be0dd7ad7ca27e6803d02
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+
+PODFILE CHECKSUM: c34e2287a9ccaa606aeceab922830efb9a6ff69a
+
+COCOAPODS: 1.9.1

@@ -15,6 +15,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
+  String _isSimulated     = 'Unknown';
 
   @override
   void initState() {
@@ -25,11 +26,34 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     String platformVersion;
+    Object simulated;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
+      await Faketooth.setSimulatedPeripherals(
+          [
+            FaketoothPeripheral(
+                identifier: 'E621E1F8-C36C-495A-93FC-0C247A3E6E5F',
+                name: "Test",
+                services: [
+                  FaketoothService(
+                      uuid: 'E621E1F8-C36C-495A-93FC-0C247A3E6E5F',
+                      characteristics: [
+                        FaketoothCharacteristic(
+                            uuid: 'E621E1F8-C36C-495A-93FC-000000000001',
+                            isNotifying: false,
+                            properties: {FaketoothCharacteristicProperties.read, FaketoothCharacteristicProperties.notify}
+                        )
+                      ]
+                  )
+                ]
+            )
+          ]
+      );
       platformVersion = await Faketooth.platformVersion;
+      simulated = await Faketooth.isSimulated;
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
+      simulated = 'Unknown';
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -39,6 +63,7 @@ class _MyAppState extends State<MyApp> {
 
     setState(() {
       _platformVersion = platformVersion;
+      _isSimulated     = simulated ? 'Yes' : 'No';
     });
   }
 
@@ -50,7 +75,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Text('Running on: $_platformVersion\nisSimulated: $_isSimulated'),
         ),
       ),
     );
