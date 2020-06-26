@@ -1,0 +1,3 @@
+[submodule "ios/Vendor/Faketooth"]
+	path = ios/Vendor/Faketooth
+	url = https://github.com/rozd/faketooth
