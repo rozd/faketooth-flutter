@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -29,7 +31,7 @@ class _MyAppState extends State<MyApp> {
     Object simulated;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      await Faketooth.setSimulatedPeripherals(
+      await Faketooth.shared.setSimulatedPeripherals(
           [
             FaketoothPeripheral(
                 identifier: 'E621E1F8-C36C-495A-93FC-0C247A3E6E5F',
@@ -41,7 +43,10 @@ class _MyAppState extends State<MyApp> {
                         FaketoothCharacteristic(
                             uuid: 'E621E1F8-C36C-495A-93FC-000000000001',
                             isNotifying: false,
-                            properties: {FaketoothCharacteristicProperties.read, FaketoothCharacteristicProperties.notify}
+                            properties: {FaketoothCharacteristicProperties.read, FaketoothCharacteristicProperties.notify},
+                            dataProducer: () {
+                              return Future.value(Uint8List.fromList('Hello'.codeUnits));
+                            },
                         )
                       ]
                   )
@@ -49,8 +54,8 @@ class _MyAppState extends State<MyApp> {
             )
           ]
       );
-      platformVersion = await Faketooth.platformVersion;
-      simulated = await Faketooth.isSimulated;
+      platformVersion = await Faketooth.shared.platformVersion;
+      simulated = await Faketooth.shared.isSimulated;
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
       simulated = 'Unknown';
@@ -75,9 +80,14 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\nisSimulated: $_isSimulated'),
+          child: Column(
+            children: <Widget>[
+              Text('Running on: $_platformVersion\nisSimulated: $_isSimulated'),
+            ],
+          ),
         ),
       ),
     );
   }
+
 }

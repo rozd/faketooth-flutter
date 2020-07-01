@@ -4,28 +4,34 @@ import CoreBluetooth
 
 public class SwiftFaketoothPlugin: NSObject, FlutterPlugin {
 
-  public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "faketooth", binaryMessenger: registrar.messenger())
-    let instance = SwiftFaketoothPlugin()
-    registrar.addMethodCallDelegate(instance, channel: channel)
-  }
-
-  public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    switch call.method {
-    case "getPlatformVersion":
-        result("iOS " + UIDevice.current.systemVersion)
-    case "isSimulated":
-        result(NSNumber(booleanLiteral: CBCentralManager.isSimulated))
-    case "setSimulatedPeripherals":
-        guard let peripherals = [FaketoothPeripheral](flutterArguments: call.arguments) else {
-            break
-        }
-        CBCentralManager.simulatedPeripherals = peripherals
-        result("OK")
-    default:
-        result(FlutterError.unsupportedMethodInvokation(call: call))
+    public static func register(with registrar: FlutterPluginRegistrar) {
+        let channel = FlutterMethodChannel(name: "faketooth", binaryMessenger: registrar.messenger())
+        let instance = SwiftFaketoothPlugin(channel: channel)
+        registrar.addMethodCallDelegate(instance, channel: channel)
     }
-  }
+
+    let channel: FlutterMethodChannel
+
+    init(channel: FlutterMethodChannel) {
+        self.channel = channel
+    }
+
+    public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        switch call.method {
+        case "getPlatformVersion":
+            result("iOS " + UIDevice.current.systemVersion)
+        case "isSimulated":
+            result(NSNumber(booleanLiteral: CBCentralManager.isSimulated))
+        case "setSimulatedPeripherals":
+            guard let peripherals = [FaketoothPeripheral](plugin: self, flutterArguments: call.arguments) else {
+                break
+            }
+            CBCentralManager.simulatedPeripherals = peripherals
+            result("OK")
+        default:
+            result(FlutterError.unsupportedMethodInvokation(call: call))
+        }
+    }
 }
 
 //
@@ -38,4 +44,44 @@ extension FlutterError {
             details: nil
         )
     }
+}
+
+//
+
+extension SwiftFaketoothPlugin {
+
+    func requestCharacteristicValue(characteristic: CBCharacteristic, completion: @escaping (Data?) -> ()) {
+        let args = [
+            "peripheral": characteristic.service.peripheral.identifier.uuidString,
+            "uuid": characteristic.uuid.uuidString
+        ]
+        channel.invokeMethod("valueForCharacteristic", arguments: args) { (value) in
+            completion((value as? FlutterStandardTypedData)?.data)
+        }
+    }
+
+    func requestDescriptorValue(descriptor: CBDescriptor, completion: @escaping (Data?) -> ()) {
+        let args = [
+            "peripheral": descriptor.characteristic.service.peripheral.identifier.uuidString,
+            "uuid": descriptor.uuid.uuidString
+        ]
+        channel.invokeMethod("valueForDescriptor", arguments: args) { (value) in
+            completion((value as? FlutterStandardTypedData)?.data)
+        }
+    }
+
+    func value(for characteristic: CBCharacteristic) -> Data? {
+        guard let peripheral = characteristic.service.peripheral as? FlutterFaketoothPeripheral else {
+            return nil
+        }
+        return peripheral.value(for: characteristic)
+    }
+
+    func value(for descriptor: CBDescriptor) -> Data? {
+        guard let peripheral = descriptor.characteristic.service.peripheral as? FlutterFaketoothPeripheral else {
+            return nil
+        }
+        return peripheral.value(for: descriptor)
+    }
+
 }
