@@ -6,6 +6,7 @@ class FaketoothCharacteristic {
   Set<FaketoothCharacteristicProperties> properties;
   bool isNotifying;
   List<FaketoothDescriptor> descriptors;
+
   FaketoothCharacteristic({
     @required this.uuid,
     @required this.properties,
@@ -19,7 +20,7 @@ class FaketoothCharacteristic {
       'uuid'        : uuid,
       'properties'  : properties.map((e) => e.index).reduce((value, element) => value | element),
       'isNotifying' : isNotifying,
-      'descriptors' : descriptors?.map((e) => e.toArguments())?.toList()
+      'descriptors' : descriptors?.map((e) => e.toArguments())?.toList() ?? []
     };
   }
 }

@@ -38,10 +38,11 @@ class _MyAppState extends State<MyApp> {
                 name: "Test",
                 services: [
                   FaketoothService(
-                      uuid: 'E621E1F8-C36C-495A-93FC-0C247A3E6E5F',
+                      uuid: '180A',
+                      isPrimary: true,
                       characteristics: [
                         FaketoothCharacteristic(
-                            uuid: 'E621E1F8-C36C-495A-93FC-000000000001',
+                            uuid: '2A29',
                             isNotifying: false,
                             properties: {FaketoothCharacteristicProperties.read, FaketoothCharacteristicProperties.notify},
                             dataProducer: () {

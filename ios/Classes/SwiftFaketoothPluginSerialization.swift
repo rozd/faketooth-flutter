@@ -78,6 +78,7 @@ extension FaketoothService {
         }
         self.init(
             uuid: uuid,
+            isPrimary: (map["isPrimary"] as! NSNumber).boolValue,
             characteristics: [FaketoothCharacteristic](plugin: plugin, flutterArguments: map["characteristics"]) ?? [],
             includedServices: [FaketoothService](plugin: plugin, flutterArguments: map["includedServices"])
         )

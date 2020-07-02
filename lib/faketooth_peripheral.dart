@@ -4,6 +4,7 @@ class FaketoothPeripheral {
   String identifier;
   String name;
   List<FaketoothService> services;
+
   FaketoothPeripheral({@required this.identifier, @required this.name, this.services});
 
   Map<String, dynamic> toArguments() {

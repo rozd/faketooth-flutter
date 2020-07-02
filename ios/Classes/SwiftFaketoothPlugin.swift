@@ -6,8 +6,7 @@ public class SwiftFaketoothPlugin: NSObject, FlutterPlugin {
 
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "faketooth", binaryMessenger: registrar.messenger())
-        let instance = SwiftFaketoothPlugin(channel: channel)
-        registrar.addMethodCallDelegate(instance, channel: channel)
+        registrar.addMethodCallDelegate(SwiftFaketoothPlugin(channel: channel), channel: channel)
     }
 
     let channel: FlutterMethodChannel
@@ -17,6 +16,7 @@ public class SwiftFaketoothPlugin: NSObject, FlutterPlugin {
     }
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        NSLog("[FlutterFaketooth] hello");
         switch call.method {
         case "getPlatformVersion":
             result("iOS " + UIDevice.current.systemVersion)
