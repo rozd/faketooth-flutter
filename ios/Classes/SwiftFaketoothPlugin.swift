@@ -69,18 +69,4 @@ extension SwiftFaketoothPlugin {
         }
     }
 
-    func value(for characteristic: CBCharacteristic) -> Data? {
-        guard let peripheral = characteristic.service.peripheral as? FlutterFaketoothPeripheral else {
-            return nil
-        }
-        return peripheral.value(for: characteristic)
-    }
-
-    func value(for descriptor: CBDescriptor) -> Data? {
-        guard let peripheral = descriptor.characteristic.service.peripheral as? FlutterFaketoothPeripheral else {
-            return nil
-        }
-        return peripheral.value(for: descriptor)
-    }
-
 }

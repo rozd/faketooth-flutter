@@ -113,30 +113,15 @@ extension FaketoothCharacteristic {
             print("[FlutterFaketooth] serialization failed, specified map doesn't contain valid \"properties\" value.")
             return nil
         }
-        let wrapper = Wrapper(plugin: plugin)
         self.init(
             uuid: uuid,
-            dataProducer: wrapper.valueProducer,
+            dataProducer: nil,
             properties: properties,
             isNotifying: (map["isNotifying"] as! NSNumber).boolValue,
             descriptors: [FaketoothDescriptor](plugin: plugin, flutterArguments: map["descriptors"])
         )
-        wrapper.characteristic = self
     }
 
-    class Wrapper {
-        let plugin: SwiftFaketoothPlugin
-        var characteristic: FaketoothCharacteristic?
-        init(plugin: SwiftFaketoothPlugin) {
-            self.plugin = plugin
-        }
-        func valueProducer() -> Data? {
-            guard let characteristic = characteristic else {
-                return nil
-            }
-            return plugin.value(for: characteristic)
-        }
-    }
 }
 
 extension FaketoothDescriptor {
@@ -151,26 +136,10 @@ extension FaketoothDescriptor {
             print("[FlutterFaketooth] serialization failed, specified map doesn't contain valid \"uuid\" value.")
             return nil
         }
-        let wrapper = Wrapper(plugin: plugin)
         self.init(
             uuid: uuid,
-            valueProducer: wrapper.valueProducer
+            valueProducer: nil
         )
-        wrapper.descriptor = self
-    }
-
-    class Wrapper {
-        let plugin: SwiftFaketoothPlugin
-        var descriptor: FaketoothDescriptor?
-        init(plugin: SwiftFaketoothPlugin) {
-            self.plugin = plugin
-        }
-        func valueProducer() -> Data? {
-            guard let descriptor = descriptor else {
-                return nil
-            }
-            return plugin.value(for: descriptor)
-        }
     }
 }
 
