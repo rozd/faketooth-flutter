@@ -10,20 +10,20 @@ import Flutter
 
 extension Array where Element == FaketoothPeripheral {
     init?(plugin: SwiftFaketoothPlugin, flutterArguments: Any?) {
-        print("[Faketooth] trying to serialize \(String(describing: flutterArguments)) to FaketoothPeripheral list.")
+        print("[FlutterFaketooth] trying to serialize \(String(describing: flutterArguments)) to FaketoothPeripheral list.")
         guard let list = flutterArguments as? [Any] else {
-            print("[Faketooth] serialization failed as specified arguments are not a valid list.")
+            print("[FlutterFaketooth] serialization failed as specified arguments are not a valid list.")
             return nil
         }
-        self.init(list.compactMap { FaketoothPeripheral(plugin: plugin, flutterArguments: $0) })
+        self.init(list.compactMap { FlutterFaketoothPeripheral(plugin: plugin, flutterArguments: $0) })
     }
 }
 
 extension Array where Element == FaketoothService {
     init?(plugin: SwiftFaketoothPlugin, flutterArguments: Any?) {
-        print("[Faketooth] trying to serialize \(String(describing: flutterArguments)) to FaketoothService list.")
+        print("[FlutterFaketooth] trying to serialize \(String(describing: flutterArguments)) to FaketoothService list.")
         guard let list = flutterArguments as? [Any] else {
-            print("[Faketooth] serialization failed as specified arguments are not a valid list.")
+            print("[FlutterFaketooth] serialization failed as specified arguments are not a valid list.")
             return nil
         }
         self.init(list.compactMap { FaketoothService(plugin: plugin, flutterArguments: $0) })
@@ -32,48 +32,60 @@ extension Array where Element == FaketoothService {
 
 extension Array where Element == FaketoothCharacteristic {
     init?(plugin: SwiftFaketoothPlugin, flutterArguments: Any?) {
-        print("[Faketooth] trying to serialize \(String(describing: flutterArguments)) to FaketoothCharacteristic list.")
+        print("[FlutterFaketooth] trying to serialize \(String(describing: flutterArguments)) to FaketoothCharacteristic list.")
         guard let list = flutterArguments as? [Any] else {
-            print("[Faketooth] serialization failed as specified arguments are not a valid list.")
+            print("[FlutterFaketooth] serialization failed as specified arguments are not a valid list.")
             return nil
         }
         self.init(list.compactMap { FaketoothCharacteristic(plugin: plugin, flutterArguments: $0) })
     }
 }
 
-extension FaketoothPeripheral {
+extension Array where Element == FaketoothDescriptor {
+    init?(plugin: SwiftFaketoothPlugin, flutterArguments: Any?) {
+        print("[FlutterFaketooth] trying to serialize \(String(describing: flutterArguments)) to FaketoothDescriptor list.")
+        guard let list = flutterArguments as? [Any] else {
+            print("[FlutterFaketooth] serialization failed as specified arguments are not a valid list.")
+            return nil
+        }
+        self.init(list.compactMap { FaketoothDescriptor(plugin: plugin, flutterArguments: $0) })
+    }
+}
+
+extension FlutterFaketoothPeripheral {
 
     convenience init?(plugin: SwiftFaketoothPlugin, flutterArguments: Any?) {
-        print("[Faketooth] trying to serialize \(String(describing: flutterArguments)) to FaketoothPeripheral instance.")
+        print("[FlutterFaketooth] trying to serialize \(String(describing: flutterArguments)) to FaketoothPeripheral instance.")
         guard let map = flutterArguments as? [String: Any] else {
-            print("[Faketooth] serialization failed as specified arguments are not a valid map structure.")
+            print("[FlutterFaketooth] serialization failed as specified arguments are not a valid map structure.")
             return nil
         }
         guard let identifier = UUID(uuidString: map["identifier"] as? String) else {
-            print("[Faketooth] serialization failed as specified map doesn't contain valid \"identifier\" field.")
+            print("[FlutterFaketooth] serialization failed as specified map doesn't contain valid \"identifier\" field.")
             return nil
         }
 
         self.init(
+            plugin: plugin,
             identifier: identifier,
             name: map["name"] as? String ?? "Unknown", // TODO: name should be nullable on iOS side
             services: [FaketoothService](plugin: plugin, flutterArguments: map["services"]) ?? []
         )
 
-        print("[Faketooth] serialization complete \(self)")
+        print("[FlutterFaketooth] serialization complete \(self)")
     }
 }
 
 extension FaketoothService {
 
-    convenience init?(plugin: SwiftFaketoothPlugin,flutterArguments: Any?) {
-        print("[Faketooth] attempt to serialize \(String(describing: flutterArguments)) to FaketoothService instance.")
+    convenience init?(plugin: SwiftFaketoothPlugin, flutterArguments: Any?) {
+        print("[FlutterFaketooth] attempt to serialize \(String(describing: flutterArguments)) to FaketoothService instance.")
         guard let map = flutterArguments as? [String: Any] else {
-            print("[Faketooth] serialization failed as specified arguments are not a valid map structure.")
+            print("[FlutterFaketooth] serialization failed as specified arguments are not a valid map structure.")
             return nil
         }
         guard let uuid = CBUUID(string: map["uuid"] as? String) else {
-            print("[Faketooth] serialization failed, specified map doesn't contain valid \"uuid\" value.")
+            print("[FlutterFaketooth] serialization failed, specified map doesn't contain valid \"uuid\" value.")
             return nil
         }
         self.init(
@@ -88,38 +100,76 @@ extension FaketoothService {
 extension FaketoothCharacteristic {
 
     convenience init?(plugin: SwiftFaketoothPlugin, flutterArguments: Any?) {
-        print("[Faketooth] attempt to serialize \(String(describing: flutterArguments)) to FaketoothCharacteristic instance.")
+        print("[FlutterFaketooth] attempt to serialize \(String(describing: flutterArguments)) to FaketoothCharacteristic instance.")
         guard let map = flutterArguments as? [String: Any] else {
-            print("[Faketooth] serialization failed, specified arguments are not a valid map structure.")
+            print("[FlutterFaketooth] serialization failed, specified arguments are not a valid map structure.")
             return nil
         }
         guard let uuid = CBUUID(string: map["uuid"] as? String) else {
-            print("[Faketooth] serialization failed, specified map doesn't contain valid \"uuid\" value.")
+            print("[FlutterFaketooth] serialization failed, specified map doesn't contain valid \"uuid\" value.")
             return nil
         }
         guard let properties = CBCharacteristicProperties(rawValue: map["properties"] as? UInt) else {
-            print("[Faketooth] serialization failed, specified map doesn't contain valid \"properties\" value.")
+            print("[FlutterFaketooth] serialization failed, specified map doesn't contain valid \"properties\" value.")
             return nil
         }
-        var wrapper = Wrapper(plugin: plugin)
+        let wrapper = Wrapper(plugin: plugin)
         self.init(
             uuid: uuid,
             dataProducer: wrapper.valueProducer,
             properties: properties,
-            isNotifying: false,
-            descriptors: nil
+            isNotifying: (map["isNotifying"] as! NSNumber).boolValue,
+            descriptors: [FaketoothDescriptor](plugin: plugin, flutterArguments: map["descriptors"])
         )
         wrapper.characteristic = self
     }
 
-    struct Wrapper {
+    class Wrapper {
         let plugin: SwiftFaketoothPlugin
         var characteristic: FaketoothCharacteristic?
+        init(plugin: SwiftFaketoothPlugin) {
+            self.plugin = plugin
+        }
         func valueProducer() -> Data? {
             guard let characteristic = characteristic else {
                 return nil
             }
             return plugin.value(for: characteristic)
+        }
+    }
+}
+
+extension FaketoothDescriptor {
+
+    convenience init?(plugin: SwiftFaketoothPlugin, flutterArguments: Any?) {
+        print("[FlutterFaketooth] attempt to serialize \(String(describing: flutterArguments)) to FaketoothDescriptor instance.")
+        guard let map = flutterArguments as? [String: Any] else {
+            print("[FlutterFaketooth] serialization failed, specified arguments are not a valid map structure.")
+            return nil
+        }
+        guard let uuid = CBUUID(string: map["uuid"] as? String) else {
+            print("[FlutterFaketooth] serialization failed, specified map doesn't contain valid \"uuid\" value.")
+            return nil
+        }
+        let wrapper = Wrapper(plugin: plugin)
+        self.init(
+            uuid: uuid,
+            valueProducer: wrapper.valueProducer
+        )
+        wrapper.descriptor = self
+    }
+
+    class Wrapper {
+        let plugin: SwiftFaketoothPlugin
+        var descriptor: FaketoothDescriptor?
+        init(plugin: SwiftFaketoothPlugin) {
+            self.plugin = plugin
+        }
+        func valueProducer() -> Data? {
+            guard let descriptor = descriptor else {
+                return nil
+            }
+            return plugin.value(for: descriptor)
         }
     }
 }

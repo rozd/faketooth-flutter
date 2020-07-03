@@ -86,12 +86,12 @@ extension on Faketooth {
     }
 
     for (FaketoothPeripheral p in _simulatedPeripherals) {
-      if (p.identifier != peripheral) {
+      if (p.identifier?.toLowerCase() != peripheral?.toLowerCase()) {
         continue;
       }
       for (FaketoothService s in p.services) {
         for (FaketoothCharacteristic c in s.characteristics) {
-          if (c.uuid == uuid) {
+          if (c.uuid?.toLowerCase() == uuid?.toLowerCase()) {
             return c;
           }
         }
@@ -107,13 +107,13 @@ extension on Faketooth {
     }
 
     for (FaketoothPeripheral p in _simulatedPeripherals) {
-      if (p.identifier != peripheral) {
+      if (p.identifier?.toLowerCase() != peripheral?.toLowerCase()) {
         continue;
       }
       for (FaketoothService s in p.services) {
         for (FaketoothCharacteristic c in s.characteristics) {
           for (FaketoothDescriptor d in c.descriptors) {
-            if (d.uuid == uuid) {
+            if (d.uuid?.toLowerCase() == uuid?.toLowerCase()) {
               return d;
             }
           }

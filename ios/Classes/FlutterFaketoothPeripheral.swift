@@ -13,6 +13,12 @@ class FlutterFaketoothPeripheral: FaketoothPeripheral {
 
     fileprivate var values: [CBUUID: Data?] = [:]
 
+    override var delegate: CBPeripheralDelegate? {
+        didSet {
+            print("[FlutterFaketooth] set delegate to \(delegate)")
+        }
+    }
+
     init(plugin: SwiftFaketoothPlugin, identifier: UUID, name: String, services: [FaketoothService]) {
         self.plugin = plugin
         super.init(
@@ -23,13 +29,23 @@ class FlutterFaketoothPeripheral: FaketoothPeripheral {
     }
 
     override func readValue(for characteristic: CBCharacteristic) {
-        guard let delegate = delegate else {
-            return
-        }
-
+        print("[FlutterFaketooth] readValue(for:\(characteristic))")
         plugin.requestCharacteristicValue(characteristic: characteristic) { data in
             self.values[characteristic.uuid] = data
-            delegate.peripheral?(self, didUpdateValueFor: characteristic, error: nil)
+            self.delegate?.peripheral?(self, didUpdateValueFor: characteristic, error: nil)
+        }
+    }
+
+    override func notifyDidUpdateValue(for characteristic: CBCharacteristic) {
+        print("[FlutterFaketooth] notifyDidUpdateValue(for:\(characteristic))")
+        plugin.requestCharacteristicValue(characteristic: characteristic) { data in
+            if let data = data {
+                print("[FlutterFaketooth] data received: \(data) as string: \(String(data: data, encoding: .utf8))")
+            } else {
+                print("[FlutterFaketooth] data is nil")
+            }
+            self.values[characteristic.uuid] = data
+            self.delegate?.peripheral?(self, didUpdateValueFor: characteristic, error: nil)
         }
     }
 }
