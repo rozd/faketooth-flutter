@@ -69,7 +69,8 @@ extension FlutterFaketoothPeripheral {
             plugin: plugin,
             identifier: identifier,
             name: map["name"] as? String ?? "Unknown", // TODO: name should be nullable on iOS side
-            services: [FaketoothService](plugin: plugin, flutterArguments: map["services"]) ?? []
+            services: [FaketoothService](plugin: plugin, flutterArguments: map["services"]),
+            advertisementData: (map["advertisementData"] as? [String: Any])?.toAdvertisementData()
         )
 
         print("[FlutterFaketooth] serialization complete \(self)")
@@ -169,5 +170,25 @@ extension CBCharacteristicProperties {
             return nil
         }
         self.init(rawValue: rawValue)
+    }
+}
+
+extension Dictionary where Key == String, Value == Any {
+    func toAdvertisementData() -> [String: Any]? {
+        var data: [String: Any] = [:]
+
+        if let localName = self["localName"] {
+            data[CBAdvertisementDataLocalNameKey] = localName
+        }
+
+        if let serviceUUIDs = self["serviceUUIDs"] as? [String] {
+            data[CBAdvertisementDataServiceUUIDsKey] = serviceUUIDs.map { CBUUID(string: $0) }
+        }
+
+        guard !data.isEmpty else {
+            return nil
+        }
+
+        return data
     }
 }

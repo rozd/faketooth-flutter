@@ -1,5 +1,5 @@
 PODS:
-  - faketooth (0.0.2):
+  - faketooth (0.0.18):
     - Flutter
   - Flutter (1.0.0)
 
@@ -14,7 +14,7 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  faketooth: d2b79d3ca464e6199097610ac438500354ce3bd2
+  faketooth: e1b4585db3f4f540d7ab246c19314d86aa041974
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
 
 PODFILE CHECKSUM: c34e2287a9ccaa606aeceab922830efb9a6ff69a

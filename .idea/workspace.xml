@@ -2,17 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6d859ca-53f1-4192-bf77-fc0915a92fb7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/faketooth/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/faketooth/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/faketooth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/faketooth/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/faketooth/ios/Vendor/Faketooth" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/faketooth/ios/Vendor/Faketooth" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/faketooth/ios/faketooth.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/faketooth/ios/faketooth.podspec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Podfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/FlutterFaketoothPeripheral.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/FlutterFaketoothPeripheral.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/SwiftFaketoothPluginSerialization.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/SwiftFaketoothPluginSerialization.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Vendor/Faketooth" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Vendor/Faketooth" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/faketooth.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/ios/faketooth.podspec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/faketooth.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/faketooth.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/faketooth_peripheral.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/faketooth_peripheral.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,54 +70,54 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1638" height="424" key="GridCell.Tab.0.bottom" timestamp="1593901141305">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2518" height="612" key="GridCell.Tab.0.bottom" timestamp="1601640130924">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state width="1638" height="424" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1593901141305" />
-    <state width="2518" height="613" key="GridCell.Tab.0.bottom/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1593264364083" />
-    <state width="1638" height="424" key="GridCell.Tab.0.center" timestamp="1593901141304">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2518" height="612" key="GridCell.Tab.0.bottom/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1601640130924" />
+    <state width="2518" height="612" key="GridCell.Tab.0.center" timestamp="1601640130923">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state width="1638" height="424" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1593901141304" />
-    <state width="2518" height="613" key="GridCell.Tab.0.center/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1593264364083" />
-    <state width="1638" height="424" key="GridCell.Tab.0.left" timestamp="1593901141298">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2518" height="612" key="GridCell.Tab.0.center/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1601640130923" />
+    <state width="2518" height="612" key="GridCell.Tab.0.left" timestamp="1601640130923">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state width="1638" height="424" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1593901141298" />
-    <state width="2518" height="613" key="GridCell.Tab.0.left/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1593264364082" />
-    <state width="1638" height="424" key="GridCell.Tab.0.right" timestamp="1593901141304">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2518" height="612" key="GridCell.Tab.0.left/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1601640130923" />
+    <state width="2518" height="612" key="GridCell.Tab.0.right" timestamp="1601640130924">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state width="1638" height="424" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1593901141304" />
-    <state width="2518" height="613" key="GridCell.Tab.0.right/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1593264364083" />
-    <state width="1638" height="424" key="GridCell.Tab.1.bottom" timestamp="1593901141306">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2518" height="612" key="GridCell.Tab.0.right/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1601640130924" />
+    <state width="2518" height="612" key="GridCell.Tab.1.bottom" timestamp="1601640130925">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state width="1638" height="424" key="GridCell.Tab.1.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1593901141306" />
-    <state width="2518" height="613" key="GridCell.Tab.1.bottom/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1593264364085" />
-    <state width="1638" height="424" key="GridCell.Tab.1.center" timestamp="1593901141305">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2518" height="612" key="GridCell.Tab.1.bottom/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1601640130925" />
+    <state width="2518" height="612" key="GridCell.Tab.1.center" timestamp="1601640130924">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state width="1638" height="424" key="GridCell.Tab.1.center/0.23.1680.1027@0.23.1680.1027" timestamp="1593901141305" />
-    <state width="2518" height="613" key="GridCell.Tab.1.center/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1593264364084" />
-    <state width="1638" height="424" key="GridCell.Tab.1.left" timestamp="1593901141305">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2518" height="612" key="GridCell.Tab.1.center/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1601640130924" />
+    <state width="2518" height="612" key="GridCell.Tab.1.left" timestamp="1601640130924">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state width="1638" height="424" key="GridCell.Tab.1.left/0.23.1680.1027@0.23.1680.1027" timestamp="1593901141305" />
-    <state width="2518" height="613" key="GridCell.Tab.1.left/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1593264364084" />
-    <state width="1638" height="424" key="GridCell.Tab.1.right" timestamp="1593901141306">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2518" height="612" key="GridCell.Tab.1.left/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1601640130924" />
+    <state width="2518" height="612" key="GridCell.Tab.1.right" timestamp="1601640130925">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state width="1638" height="424" key="GridCell.Tab.1.right/0.23.1680.1027@0.23.1680.1027" timestamp="1593901141306" />
-    <state width="2518" height="613" key="GridCell.Tab.1.right/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1593264364085" />
+    <state width="2518" height="612" key="GridCell.Tab.1.right/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1601640130925" />
     <state x="570" y="275" width="540" height="524" key="StructurePopup" timestamp="1593784983752">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="570" y="275" width="540" height="524" key="StructurePopup/0.23.1680.1027@0.23.1680.1027" timestamp="1593784983752" />
-    <state x="950" y="564" key="com.intellij.ide.util.TipDialog" timestamp="1595518631573">
+    <state x="623" y="805" key="com.intellij.ide.util.TipDialog" timestamp="1597246197689">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="950" y="564" key="com.intellij.ide.util.TipDialog/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1595518631573" />
+    <state x="623" y="805" key="com.intellij.ide.util.TipDialog/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1597246197689" />
     <state x="492" y="293" width="695" height="486" key="find.popup" timestamp="1593784685683">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
@@ -109,9 +126,10 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="325" height="92" key="javadoc.popup.new/0.23.1680.1027@0.23.1680.1027" timestamp="1593785027580" />
-    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1593625185019">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state x="770" y="336" width="1021" height="933" key="search.everywhere.popup" timestamp="1601638595823">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1593625185019" />
+    <state x="770" y="336" width="1021" height="933" key="search.everywhere.popup/0.23.2560.1417/-1680.23.1680.1027@0.23.2560.1417" timestamp="1601638595823" />
   </component>
 </project>

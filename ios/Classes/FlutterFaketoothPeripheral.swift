@@ -11,12 +11,13 @@ class FlutterFaketoothPeripheral: FaketoothPeripheral {
 
     fileprivate let plugin: SwiftFaketoothPlugin
 
-    init(plugin: SwiftFaketoothPlugin, identifier: UUID, name: String, services: [FaketoothService]) {
+    init(plugin: SwiftFaketoothPlugin, identifier: UUID, name: String, services: [FaketoothService]?, advertisementData: [String: Any]?) {
         self.plugin = plugin
         super.init(
             identifier: identifier,
             name: name,
-            services: services
+            services: services,
+            advertisementData: advertisementData
         )
     }
 
