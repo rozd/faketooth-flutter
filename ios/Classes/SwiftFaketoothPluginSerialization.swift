@@ -144,6 +144,64 @@ extension FaketoothDescriptor {
     }
 }
 
+extension FaketoothDelaySettings {
+    init?(plugin: SwiftFaketoothPlugin, flutterArguments: Any?) {
+        print("[FlutterFaketooth] attempt to serialize \(String(describing: flutterArguments)) to FaketoothDelaySettings instance.")
+        guard let map = flutterArguments as? [String: Float] else {
+            print("[FlutterFaketooth] serialization failed, specified arguments are not a valid map structure.")
+            return nil
+        }
+
+        guard let scanForPeripheralDelayInSeconds = map["scanForPeripheralDelayInSeconds"] else {
+            return nil
+        }
+        guard let connectPeripheralDelayInSeconds = map["connectPeripheralDelayInSeconds"] else {
+            return nil
+        }
+        guard let cancelPeripheralConnectionDelayInSeconds = map["cancelPeripheralConnectionDelayInSeconds"] else {
+            return nil
+        }
+        guard let discoverServicesDelayInSeconds = map["discoverServicesDelayInSeconds"] else {
+            return nil
+        }
+        guard let discoverCharacteristicsDelayInSeconds = map["discoverCharacteristicsDelayInSeconds"] else {
+            return nil
+        }
+        guard let discoverIncludedServicesDelayInSeconds = map["discoverIncludedServicesDelayInSeconds"] else {
+            return nil
+        }
+        guard let discoverDescriptorsForCharacteristicDelayInSeconds = map["discoverDescriptorsForCharacteristicDelayInSeconds"] else {
+            return nil
+        }
+        guard let readValueForCharacteristicDelayInSeconds = map["readValueForCharacteristicDelayInSeconds"] else {
+            return nil
+        }
+        guard let writeValueForCharacteristicDelayInSeconds = map["writeValueForCharacteristicDelayInSeconds"] else {
+            return nil
+        }
+        guard let readValueForDescriptorDelayInSeconds = map["readValueForDescriptorDelayInSeconds"] else {
+            return nil
+        }
+        guard let writeValueForDescriptorDelayInSeconds = map["writeValueForDescriptorDelayInSeconds"] else {
+            return nil
+        }
+
+        self.init(
+            scanForPeripheralDelayInSeconds: scanForPeripheralDelayInSeconds,
+            connectPeripheralDelayInSeconds: connectPeripheralDelayInSeconds,
+            cancelPeripheralConnectionDelayInSeconds: cancelPeripheralConnectionDelayInSeconds,
+            discoverServicesDelayInSeconds: discoverServicesDelayInSeconds,
+            discoverCharacteristicsDelayInSeconds: discoverCharacteristicsDelayInSeconds,
+            discoverIncludedServicesDelayInSeconds: discoverIncludedServicesDelayInSeconds,
+            discoverDescriptorsForCharacteristicDelayInSeconds: discoverDescriptorsForCharacteristicDelayInSeconds,
+            readValueForCharacteristicDelayInSeconds: readValueForCharacteristicDelayInSeconds,
+            writeValueForCharacteristicDelayInSeconds: writeValueForCharacteristicDelayInSeconds,
+            readValueForDescriptorDelayInSeconds: readValueForDescriptorDelayInSeconds,
+            writeValueForDescriptorDelayInSeconds: writeValueForDescriptorDelayInSeconds
+        )
+    }
+}
+
 // MARK: - Utils
 
 extension UUID {

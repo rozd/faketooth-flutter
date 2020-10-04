@@ -1,3 +1,6 @@
+## 0.0.21
+Adds support for setting delays
+
 ## 0.0.20
 Fixes serialization for Characteristic's properties
 

@@ -27,6 +27,12 @@ public class SwiftFaketoothPlugin: NSObject, FlutterPlugin {
             }
             CBCentralManager.simulatedPeripherals = peripherals
             result("OK")
+        case "setDelaySettings":
+            guard let delay = FaketoothDelaySettings(plugin: self, flutterArguments: call.arguments) else {
+                break
+            }
+            FaketoothSettings.delay = delay
+            result("OK")
         default:
             result(FlutterError.unsupportedMethodInvokation(call: call))
         }

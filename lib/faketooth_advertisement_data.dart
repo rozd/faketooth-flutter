@@ -1,3 +1,5 @@
+part of faketooth;
+
 class FaketoothAdvertisementData {
   final String localName;
   final List<String> serviceUUIDs;

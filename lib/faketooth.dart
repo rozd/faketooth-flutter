@@ -3,7 +3,6 @@ library faketooth;
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:faketooth/faketooth_advertisement_data.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -11,6 +10,8 @@ part 'faketooth_peripheral.dart';
 part 'faketooth_service.dart';
 part 'faketooth_characteristic.dart';
 part 'faketooth_descriptor.dart';
+part 'faketooth_delay_settings.dart';
+part 'faketooth_advertisement_data.dart';
 
 class Faketooth {
 
@@ -48,6 +49,12 @@ class Faketooth {
   Future<void> setSimulatedPeripherals(List<FaketoothPeripheral> value) async {
     _simulatedPeripherals = value;
     await _channel.invokeMethod('setSimulatedPeripherals', _simulatedPeripherals.map((value) => value.toArguments()).toList());
+  }
+
+  Future<void> setSettings({FaketoothDelaySettings delay}) async {
+    if (delay != null) {
+      await _channel.invokeMethod("setDelaySettings", delay.toArguments());
+    }
   }
 
   // MARK: Handlers
