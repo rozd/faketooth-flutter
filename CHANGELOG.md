@@ -1,14 +1,17 @@
+## 0.0.22
+Fixed inaccessible FaketoothDescriptor's fields
+
 ## 0.0.21
-Adds support for setting delays
+Added support for setting delays
 
 ## 0.0.20
-Fixes serialization for Characteristic's properties
+Fixed serialization for Characteristic's properties
 
 ## 0.0.19
 Initial support for simulating Advertisement Data
 
 ## 0.0.18
-Adds support for notifying characteristic's value
+Added support for notifying characteristic's value
 
 ## 0.0.9
 Initial release

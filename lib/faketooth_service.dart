@@ -6,7 +6,12 @@ class FaketoothService {
   List<FaketoothCharacteristic> characteristics;
   List<FaketoothService> includedServices;
 
-  FaketoothService({@required this.uuid, @required this.isPrimary, this.characteristics, this.includedServices});
+  FaketoothService({
+    @required this.uuid,
+    @required this.isPrimary,
+    this.characteristics,
+    this.includedServices
+  });
 
   Map<String, dynamic> toArguments() {
     return {
