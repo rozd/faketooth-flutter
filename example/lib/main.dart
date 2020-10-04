@@ -43,7 +43,6 @@ class _MyAppState extends State<MyApp> {
                       characteristics: [
                         FaketoothCharacteristic(
                             uuid: '2A29',
-                            isNotifying: true,
                             properties: {FaketoothCharacteristicProperties.read, FaketoothCharacteristicProperties.notify},
                             dataProducer: () {
                               return Future.value(Uint8List.fromList('Hello'.codeUnits));

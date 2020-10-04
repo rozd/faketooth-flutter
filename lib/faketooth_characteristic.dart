@@ -4,13 +4,11 @@ class FaketoothCharacteristic {
   String uuid;
   Future<Uint8List> Function() dataProducer;
   Set<FaketoothCharacteristicProperties> properties;
-  bool isNotifying;
   List<FaketoothDescriptor> descriptors;
 
   FaketoothCharacteristic({
     @required this.uuid,
     @required this.properties,
-    this.isNotifying,
     this.descriptors,
     this.dataProducer
   });
@@ -19,7 +17,6 @@ class FaketoothCharacteristic {
     return {
       'uuid'        : uuid,
       'properties'  : properties.map((e) => e.code).toList(),
-      'isNotifying' : isNotifying,
       'descriptors' : descriptors?.map((e) => e.toArguments())?.toList() ?? []
     };
   }

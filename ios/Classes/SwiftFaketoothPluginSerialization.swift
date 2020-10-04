@@ -118,7 +118,6 @@ extension FaketoothCharacteristic {
             uuid: uuid,
             dataProducer: nil,
             properties: properties,
-            isNotifying: (map["isNotifying"] as! NSNumber).boolValue,
             descriptors: [FaketoothDescriptor](plugin: plugin, flutterArguments: map["descriptors"])
         )
     }
@@ -185,6 +184,9 @@ extension FaketoothDelaySettings {
         guard let writeValueForDescriptorDelayInSeconds = map["writeValueForDescriptorDelayInSeconds"] else {
             return nil
         }
+        guard let setNotifyValueForCharacteristicDelayInSeconds = map["setNotifyValueForCharacteristicDelayInSeconds"] else {
+            return nil
+        }
 
         self.init(
             scanForPeripheralDelayInSeconds: scanForPeripheralDelayInSeconds,
@@ -197,7 +199,8 @@ extension FaketoothDelaySettings {
             readValueForCharacteristicDelayInSeconds: readValueForCharacteristicDelayInSeconds,
             writeValueForCharacteristicDelayInSeconds: writeValueForCharacteristicDelayInSeconds,
             readValueForDescriptorDelayInSeconds: readValueForDescriptorDelayInSeconds,
-            writeValueForDescriptorDelayInSeconds: writeValueForDescriptorDelayInSeconds
+            writeValueForDescriptorDelayInSeconds: writeValueForDescriptorDelayInSeconds,
+            setNotifyValueForCharacteristicDelayInSeconds: setNotifyValueForCharacteristicDelayInSeconds
         )
     }
 }

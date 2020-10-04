@@ -1,3 +1,6 @@
+## 0.0.23
+Updated Faketooth iOS package with fixes for characteristic notification.
+
 ## 0.0.22
 Fixed inaccessible FaketoothDescriptor's fields
 
