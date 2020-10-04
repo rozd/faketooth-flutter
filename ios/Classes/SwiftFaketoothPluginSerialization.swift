@@ -114,9 +114,10 @@ extension FaketoothCharacteristic {
             print("[FlutterFaketooth] serialization failed, specified map doesn't contain valid \"properties\" value.")
             return nil
         }
+        let initialData = (map["initialValue"] as? FlutterStandardTypedData)?.data
         self.init(
             uuid: uuid,
-            dataProducer: nil,
+            valueProducer: initialData != nil ? { initialData } : nil,
             properties: properties,
             descriptors: [FaketoothDescriptor](plugin: plugin, flutterArguments: map["descriptors"])
         )
@@ -136,9 +137,10 @@ extension FaketoothDescriptor {
             print("[FlutterFaketooth] serialization failed, specified map doesn't contain valid \"uuid\" value.")
             return nil
         }
+        let initialData = map["initialValue"]
         self.init(
             uuid: uuid,
-            valueProducer: nil
+            valueProducer: initialData != nil ? { initialData } : nil
         )
     }
 }

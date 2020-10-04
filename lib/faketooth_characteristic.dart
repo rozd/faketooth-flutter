@@ -1,23 +1,26 @@
 part of faketooth;
 
 class FaketoothCharacteristic {
-  String uuid;
-  Future<Uint8List> Function() dataProducer;
-  Set<FaketoothCharacteristicProperties> properties;
-  List<FaketoothDescriptor> descriptors;
+  final String uuid;
+  final Set<FaketoothCharacteristicProperties> properties;
+  final List<FaketoothDescriptor> descriptors;
+  final Future<Uint8List> Function() valueProducer;
+  final Uint8List initialValue;
 
-  FaketoothCharacteristic({
+  const FaketoothCharacteristic({
     @required this.uuid,
     @required this.properties,
     this.descriptors,
-    this.dataProducer
+    this.valueProducer,
+    this.initialValue,
   });
 
   Map<String, dynamic> toArguments() {
     return {
       'uuid'        : uuid,
       'properties'  : properties.map((e) => e.code).toList(),
-      'descriptors' : descriptors?.map((e) => e.toArguments())?.toList() ?? []
+      'descriptors' : descriptors?.map((e) => e.toArguments())?.toList() ?? [],
+      "initialValue": initialValue,
     };
   }
 }

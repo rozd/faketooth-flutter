@@ -1,12 +1,12 @@
 part of faketooth;
 
 class FaketoothService {
-  String uuid;
-  bool isPrimary;
-  List<FaketoothCharacteristic> characteristics;
-  List<FaketoothService> includedServices;
+  final String uuid;
+  final bool isPrimary;
+  final List<FaketoothCharacteristic> characteristics;
+  final List<FaketoothService> includedServices;
 
-  FaketoothService({
+  const FaketoothService({
     @required this.uuid,
     @required this.isPrimary,
     this.characteristics,

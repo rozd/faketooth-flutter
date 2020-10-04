@@ -1,3 +1,6 @@
+## 0.0.24
+Added possibility to specify characteristic and descriptor initial values.
+
 ## 0.0.23
 Updated Faketooth iOS package with fixes for characteristic notification.
 

@@ -4,7 +4,10 @@ class FaketoothAdvertisementData {
   final String localName;
   final List<String> serviceUUIDs;
 
-  FaketoothAdvertisementData({this.localName, this.serviceUUIDs});
+  const FaketoothAdvertisementData({
+    this.localName,
+    this.serviceUUIDs
+  });
 
   Map<String, dynamic> toArguments() {
     return {

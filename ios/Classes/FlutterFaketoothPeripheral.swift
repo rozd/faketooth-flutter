@@ -36,4 +36,12 @@ class FlutterFaketoothPeripheral: FaketoothPeripheral {
             self.delegate?.peripheral?(self, didUpdateValueFor: characteristic, error: nil)
         }
     }
+
+    override func readValue(for descriptor: CBDescriptor) {
+        print("[FlutterFaketooth] readValue(for:\(descriptor))")
+        plugin.requestDescriptorValue(descriptor: descriptor) { data in
+            (descriptor as? FaketoothDescriptor)?.setValue(data)
+            self.delegate?.peripheral?(self, didUpdateValueFor: descriptor, error: nil)
+        }
+    }
 }

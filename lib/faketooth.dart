@@ -66,10 +66,10 @@ class Faketooth {
             peripheral: call.arguments['peripheral'],
             uuid: call.arguments['uuid']
         );
-        if (characteristic?.dataProducer == null) {
+        if (characteristic?.valueProducer == null) {
           return null;
         }
-        return await characteristic.dataProducer();
+        return await characteristic.valueProducer();
       case "valueForDescriptor":
         var descriptor = findDescriptor(
           peripheral: call.arguments['peripheral'],

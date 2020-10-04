@@ -1,12 +1,12 @@
 part of faketooth;
 
 class FaketoothPeripheral {
-  String identifier;
-  String name;
-  List<FaketoothService> services;
-  FaketoothAdvertisementData advertisementData;
+  final String identifier;
+  final String name;
+  final List<FaketoothService> services;
+  final FaketoothAdvertisementData advertisementData;
 
-  FaketoothPeripheral({
+  const FaketoothPeripheral({
     @required this.identifier,
     @required this.name,
     this.services,
