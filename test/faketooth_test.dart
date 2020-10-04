@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await Faketooth.platformVersion, '42');
+    expect(await Faketooth.shared.platformVersion, '42');
   });
 }
