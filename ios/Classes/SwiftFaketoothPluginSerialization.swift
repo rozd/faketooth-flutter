@@ -110,7 +110,7 @@ extension FaketoothCharacteristic {
             print("[FlutterFaketooth] serialization failed, specified map doesn't contain valid \"uuid\" value.")
             return nil
         }
-        guard let properties = CBCharacteristicProperties(rawValue: map["properties"] as? UInt) else {
+        guard let properties = CBCharacteristicProperties(codes: map["properties"] as? [String]) else {
             print("[FlutterFaketooth] serialization failed, specified map doesn't contain valid \"properties\" value.")
             return nil
         }
@@ -165,11 +165,39 @@ extension CBUUID {
 }
 
 extension CBCharacteristicProperties {
+
     init?(rawValue: UInt?) {
         guard let rawValue = rawValue else {
             return nil
         }
         self.init(rawValue: rawValue)
+    }
+
+    init?(code: String?) {
+        guard let code = code else {
+            return nil
+        }
+        switch code {
+        case "broadcast"                    : self = .broadcast
+        case "read"                         : self = .read
+        case "writeWithoutResponse"         : self = .writeWithoutResponse
+        case "write"                        : self = .write
+        case "notify"                       : self = .notify
+        case "indicate"                     : self = .indicate
+        case "authenticatedSignedWrites"    : self = .authenticatedSignedWrites
+        case "extendedProperties"           : self = .extendedProperties
+        case "notifyEncryptionRequired"     : self = .notifyEncryptionRequired
+        case "indicateEncryptionRequired"   : self = .broadcast
+        default:
+            return nil
+        }
+    }
+
+    init?(codes: [String]?) {
+        guard let codes = codes else {
+            return nil
+        }
+        self = CBCharacteristicProperties(codes.map { CBCharacteristicProperties(code: $0) }.compactMap { $0 })
     }
 }
 
