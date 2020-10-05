@@ -117,9 +117,10 @@ extension FaketoothCharacteristic {
         let initialData = (map["initialValue"] as? FlutterStandardTypedData)?.data
         self.init(
             uuid: uuid,
-            valueProducer: initialData != nil ? { initialData } : nil,
             properties: properties,
-            descriptors: [FaketoothDescriptor](plugin: plugin, flutterArguments: map["descriptors"])
+            descriptors: [FaketoothDescriptor](plugin: plugin, flutterArguments: map["descriptors"]),
+            valueProducer: initialData != nil ? { initialData } : nil,
+            valueHandler: nil
         )
     }
 
@@ -140,7 +141,8 @@ extension FaketoothDescriptor {
         let initialData = map["initialValue"]
         self.init(
             uuid: uuid,
-            valueProducer: initialData != nil ? { initialData } : nil
+            valueProducer: initialData != nil ? { initialData } : nil,
+            valueHandler: nil
         )
     }
 }

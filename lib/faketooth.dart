@@ -61,7 +61,7 @@ class Faketooth {
 
   Future<dynamic> handleMethodCall(MethodCall call) async {
     switch (call.method) {
-      case "valueForCharacteristic":
+      case "getValueForCharacteristic":
         var characteristic = findCharacteristic(
             peripheral: call.arguments['peripheral'],
             uuid: call.arguments['uuid']
@@ -70,7 +70,17 @@ class Faketooth {
           return null;
         }
         return await characteristic.valueProducer();
-      case "valueForDescriptor":
+      case "setValueForCharacteristic":
+        final characteristic = findCharacteristic(
+          peripheral: call.arguments["peripheral"],
+          uuid: call.arguments["uuid"],
+        );
+        final valueHandler = characteristic?.valueHandler;
+        if (valueHandler != null) {
+          valueHandler(call.arguments["value"]);
+        }
+        return null;
+      case "getValueForDescriptor":
         var descriptor = findDescriptor(
           peripheral: call.arguments['peripheral'],
           uuid: call.arguments['uuid']
@@ -79,6 +89,16 @@ class Faketooth {
           return null;
         }
         return await descriptor.valueProducer();
+      case "setValueForCharacteristic":
+        final descriptor = findDescriptor(
+            peripheral: call.arguments['peripheral'],
+            uuid: call.arguments['uuid']
+        );
+        final valueHandler = descriptor?.valueHandler;
+        if (valueHandler != null) {
+          valueHandler(call.arguments["value"]);
+        }
+        return null;
       default:
         return null;
     }

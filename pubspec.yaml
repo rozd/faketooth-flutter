@@ -1,6 +1,6 @@
 name: faketooth
 description: BLE simulation for Flutter on iOS
-version: 0.0.24
+version: 0.0.25
 homepage: https://github.com/rozd/faketooth-flutter
 
 environment:

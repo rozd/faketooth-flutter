@@ -55,24 +55,42 @@ extension FlutterError {
 
 extension SwiftFaketoothPlugin {
 
-    func requestCharacteristicValue(characteristic: CBCharacteristic, completion: @escaping (Data?) -> ()) {
+    func requestValueForCharacteristic(_ characteristic: CBCharacteristic, completion: @escaping (Data?) -> ()) {
         let args = [
             "peripheral": characteristic.service.peripheral.identifier.uuidString,
             "uuid": characteristic.uuid.uuidString
         ]
-        channel.invokeMethod("valueForCharacteristic", arguments: args) { (value) in
+        channel.invokeMethod("getValueForCharacteristic", arguments: args) { (value) in
             completion((value as? FlutterStandardTypedData)?.data)
         }
     }
 
-    func requestDescriptorValue(descriptor: CBDescriptor, completion: @escaping (Data?) -> ()) {
+    func updateValue(_ value: Data?, for characteristic: CBCharacteristic, completion: ((Any?) -> ())?) {
+        let args = [
+            "peripheral": characteristic.service.peripheral.identifier.uuidString,
+            "uuid": characteristic.uuid.uuidString,
+            "value": value
+        ] as [String: Any?]
+        channel.invokeMethod("setValueForCharacteristic", arguments: args, result: completion)
+    }
+
+    func requestValueForDescriptor(_ descriptor: CBDescriptor, completion: @escaping (Data?) -> ()) {
         let args = [
             "peripheral": descriptor.characteristic.service.peripheral.identifier.uuidString,
             "uuid": descriptor.uuid.uuidString
         ]
-        channel.invokeMethod("valueForDescriptor", arguments: args) { (value) in
+        channel.invokeMethod("getValueForDescriptor", arguments: args) { (value) in
             completion((value as? FlutterStandardTypedData)?.data)
         }
+    }
+
+    func updateValue(_ value: Any?, for descriptor: CBDescriptor, completion: ((Any?) -> ())?) {
+        let args = [
+            "peripheral": descriptor.characteristic.service.peripheral.identifier.uuidString,
+            "uuid": descriptor.uuid.uuidString,
+            "value": value
+        ] as [String: Any?]
+        channel.invokeMethod("setValueForDescriptor", arguments: args, result: completion)
     }
 
 }

@@ -5,14 +5,16 @@ class FaketoothCharacteristic {
   final Set<FaketoothCharacteristicProperties> properties;
   final List<FaketoothDescriptor> descriptors;
   final Future<Uint8List> Function() valueProducer;
+  final void Function(Uint8List) valueHandler;
   final Uint8List initialValue;
 
   const FaketoothCharacteristic({
     @required this.uuid,
     @required this.properties,
     this.descriptors,
-    this.valueProducer,
     this.initialValue,
+    this.valueProducer,
+    this.valueHandler,
   });
 
   Map<String, dynamic> toArguments() {

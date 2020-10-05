@@ -1,3 +1,6 @@
+## 0.0.25
+Added value handlers for Characteristic and Descriptor classes.
+
 ## 0.0.24
 Added possibility to specify characteristic and descriptor initial values.
 
