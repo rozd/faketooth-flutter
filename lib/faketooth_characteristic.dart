@@ -3,14 +3,14 @@ part of faketooth;
 class FaketoothCharacteristic {
   final String uuid;
   final Set<FaketoothCharacteristicProperties> properties;
-  final List<FaketoothDescriptor> descriptors;
-  final Future<Uint8List> Function() valueProducer;
-  final void Function(Uint8List) valueHandler;
-  final Uint8List initialValue;
+  final List<FaketoothDescriptor>? descriptors;
+  final Future<Uint8List> Function()? valueProducer;
+  final void Function(Uint8List?)? valueHandler;
+  final Uint8List? initialValue;
 
   const FaketoothCharacteristic({
-    @required this.uuid,
-    @required this.properties,
+    required this.uuid,
+    required this.properties,
     this.descriptors,
     this.initialValue,
     this.valueProducer,
@@ -21,7 +21,7 @@ class FaketoothCharacteristic {
     return {
       'uuid'        : uuid,
       'properties'  : properties.map((e) => e.code).toList(),
-      'descriptors' : descriptors?.map((e) => e.toArguments())?.toList() ?? [],
+      'descriptors' : descriptors?.map((e) => e.toArguments()).toList() ?? [],
       "initialValue": initialValue,
     };
   }
@@ -41,7 +41,7 @@ enum FaketoothCharacteristicProperties {
 }
 
 extension FaketoothCharacteristicPropertiesCode on FaketoothCharacteristicProperties {
-  String get code {
+  String? get code {
     switch (this) {
       case FaketoothCharacteristicProperties.broadcast                  : return "broadcast";
       case FaketoothCharacteristicProperties.read                       : return "read";

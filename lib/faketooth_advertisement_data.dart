@@ -1,8 +1,8 @@
 part of faketooth;
 
 class FaketoothAdvertisementData {
-  final String localName;
-  final List<String> serviceUUIDs;
+  final String? localName;
+  final List<String>? serviceUUIDs;
 
   const FaketoothAdvertisementData({
     this.localName,

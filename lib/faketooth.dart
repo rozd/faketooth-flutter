@@ -3,7 +3,6 @@ library faketooth;
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 part 'faketooth_peripheral.dart';
@@ -23,7 +22,7 @@ class Faketooth {
 
   MethodChannel _channel = const MethodChannel('faketooth');
 
-  List<FaketoothPeripheral> _simulatedPeripherals;
+  List<FaketoothPeripheral>? _simulatedPeripherals;
 
   // MARK: Constructors
 
@@ -38,23 +37,21 @@ class Faketooth {
   // MARK: Methods
 
   Future<bool> get isSimulated async {
-    return await _channel.invokeMethod('isSimulated');
+    return await _channel.invokeMethod('isSimulated') ?? false;
   }
 
-  Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
+  Future<String?> get platformVersion async {
+    final String? version = await _channel.invokeMethod('getPlatformVersion');
     return version;
   }
 
   Future<void> setSimulatedPeripherals(List<FaketoothPeripheral> value) async {
     _simulatedPeripherals = value;
-    await _channel.invokeMethod('setSimulatedPeripherals', _simulatedPeripherals.map((value) => value.toArguments()).toList());
+    await _channel.invokeMethod('setSimulatedPeripherals', _simulatedPeripherals!.map((value) => value.toArguments()).toList());
   }
 
-  Future<void> setSettings({FaketoothDelaySettings delay}) async {
-    if (delay != null) {
-      await _channel.invokeMethod("setDelaySettings", delay.toArguments());
-    }
+  Future<void> setSettings({required FaketoothDelaySettings delay}) async {
+    await _channel.invokeMethod("setDelaySettings", delay.toArguments());
   }
 
   // MARK: Handlers
@@ -69,7 +66,7 @@ class Faketooth {
         if (characteristic?.valueProducer == null) {
           return null;
         }
-        return await characteristic.valueProducer();
+        return await characteristic!.valueProducer!();
       case "setValueForCharacteristic":
         final characteristic = findCharacteristic(
           peripheral: call.arguments["peripheral"],
@@ -88,7 +85,7 @@ class Faketooth {
         if (descriptor?.valueProducer == null) {
           return null;
         }
-        return await descriptor.valueProducer();
+        return await descriptor!.valueProducer!();
       case "setValueForCharacteristic":
         final descriptor = findDescriptor(
             peripheral: call.arguments['peripheral'],
@@ -108,18 +105,18 @@ class Faketooth {
 
 extension on Faketooth {
 
-  FaketoothCharacteristic findCharacteristic({@required String peripheral, @required String uuid}) {
-    if (_simulatedPeripherals == null || _simulatedPeripherals.isEmpty) {
+  FaketoothCharacteristic? findCharacteristic({required String peripheral, required String uuid}) {
+    if (_simulatedPeripherals?.isNotEmpty == false) {
       return null;
     }
 
-    for (FaketoothPeripheral p in _simulatedPeripherals) {
-      if (p.identifier?.toLowerCase() != peripheral?.toLowerCase()) {
+    for (FaketoothPeripheral p in _simulatedPeripherals!) {
+      if (p.identifier.toLowerCase() != peripheral.toLowerCase()) {
         continue;
       }
-      for (FaketoothService s in p.services) {
-        for (FaketoothCharacteristic c in s.characteristics) {
-          if (c.uuid?.toLowerCase() == uuid?.toLowerCase()) {
+      for (FaketoothService s in p.services!) {
+        for (FaketoothCharacteristic c in s.characteristics!) {
+          if (c.uuid.toLowerCase() == uuid.toLowerCase()) {
             return c;
           }
         }
@@ -129,19 +126,19 @@ extension on Faketooth {
     return null;
   }
 
-  FaketoothDescriptor findDescriptor({@required String peripheral, @required String uuid}) {
-    if (_simulatedPeripherals == null || _simulatedPeripherals.isEmpty) {
+  FaketoothDescriptor? findDescriptor({required String peripheral, required String uuid}) {
+    if (_simulatedPeripherals?.isNotEmpty == false) {
       return null;
     }
 
-    for (FaketoothPeripheral p in _simulatedPeripherals) {
-      if (p.identifier?.toLowerCase() != peripheral?.toLowerCase()) {
+    for (FaketoothPeripheral p in _simulatedPeripherals!) {
+      if (p.identifier.toLowerCase() != peripheral.toLowerCase()) {
         continue;
       }
-      for (FaketoothService s in p.services) {
-        for (FaketoothCharacteristic c in s.characteristics) {
-          for (FaketoothDescriptor d in c.descriptors) {
-            if (d.uuid?.toLowerCase() == uuid?.toLowerCase()) {
+      for (FaketoothService s in p.services!) {
+        for (FaketoothCharacteristic c in s.characteristics!) {
+          for (FaketoothDescriptor d in c.descriptors!) {
+            if (d.uuid.toLowerCase() == uuid.toLowerCase()) {
               return d;
             }
           }
