@@ -1,11 +1,11 @@
 name: faketooth
 description: BLE simulation for Flutter on iOS
-version: 0.1.0-nullsafety.1
+version: 0.1.1
 homepage: https://github.com/rozd/faketooth-flutter
 
 environment:
-  sdk: '>=2.12.0-0 <3.0.0'
-  flutter: ">=1.24.0-0"
+  sdk: '>=2.14.3 <3.0.0'
+  flutter: ">=2.5.2"
 
 dependencies:
   flutter:

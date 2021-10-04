@@ -57,7 +57,7 @@ extension SwiftFaketoothPlugin {
 
     func requestValueForCharacteristic(_ characteristic: CBCharacteristic, completion: @escaping (Data?) -> ()) {
         let args = [
-            "peripheral": characteristic.service.peripheral.identifier.uuidString,
+            "peripheral": characteristic.service?.peripheral?.identifier.uuidString,
             "uuid": characteristic.uuid.uuidString
         ]
         channel.invokeMethod("getValueForCharacteristic", arguments: args) { (value) in
@@ -67,7 +67,7 @@ extension SwiftFaketoothPlugin {
 
     func updateValue(_ value: Data?, for characteristic: CBCharacteristic, completion: ((Any?) -> ())?) {
         let args = [
-            "peripheral": characteristic.service.peripheral.identifier.uuidString,
+            "peripheral": characteristic.service?.peripheral?.identifier.uuidString,
             "uuid": characteristic.uuid.uuidString,
             "value": value
         ] as [String: Any?]
@@ -76,7 +76,7 @@ extension SwiftFaketoothPlugin {
 
     func requestValueForDescriptor(_ descriptor: CBDescriptor, completion: @escaping (Data?) -> ()) {
         let args = [
-            "peripheral": descriptor.characteristic.service.peripheral.identifier.uuidString,
+            "peripheral": descriptor.characteristic?.service?.peripheral?.identifier.uuidString,
             "uuid": descriptor.uuid.uuidString
         ]
         channel.invokeMethod("getValueForDescriptor", arguments: args) { (value) in
@@ -86,7 +86,7 @@ extension SwiftFaketoothPlugin {
 
     func updateValue(_ value: Any?, for descriptor: CBDescriptor, completion: ((Any?) -> ())?) {
         let args = [
-            "peripheral": descriptor.characteristic.service.peripheral.identifier.uuidString,
+            "peripheral": descriptor.characteristic?.service?.peripheral?.identifier.uuidString,
             "uuid": descriptor.uuid.uuidString,
             "value": value
         ] as [String: Any?]
