@@ -3,12 +3,12 @@ part of faketooth;
 class FaketoothService {
   final String uuid;
   final bool isPrimary;
-  final List<FaketoothCharacteristic> characteristics;
-  final List<FaketoothService> includedServices;
+  final List<FaketoothCharacteristic>? characteristics;
+  final List<FaketoothService>? includedServices;
 
   const FaketoothService({
-    @required this.uuid,
-    @required this.isPrimary,
+    required this.uuid,
+    required this.isPrimary,
     this.characteristics,
     this.includedServices
   });
@@ -17,8 +17,8 @@ class FaketoothService {
     return {
       'uuid'             : uuid,
       'isPrimary'        : isPrimary,
-      'characteristics'  : characteristics?.map((e) => e.toArguments())?.toList(),
-      'includedServices' : includedServices?.map((e) => e.toArguments())?.toList()
+      'characteristics'  : characteristics?.map((e) => e.toArguments()).toList(),
+      'includedServices' : includedServices?.map((e) => e.toArguments()).toList(),
     };
   }
 }
