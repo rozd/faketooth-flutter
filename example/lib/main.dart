@@ -1,11 +1,9 @@
-import 'dart:typed_data';
-
-import 'package:faketooth_example/ble_simulator.dart';
-import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:faketooth/faketooth.dart';
+import 'package:faketooth_example/ble_simulator.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,8 +26,8 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
-    Object simulated;
+    String? platformVersion;
+    bool simulated = false;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       await BLESimulator.initialize();
@@ -37,7 +35,6 @@ class _MyAppState extends State<MyApp> {
       simulated = await Faketooth.shared.isSimulated;
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
-      simulated = 'Unknown';
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -46,7 +43,7 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _platformVersion = platformVersion ?? 'Unknown';
       _isSimulated     = simulated ? 'Yes' : 'No';
     });
   }

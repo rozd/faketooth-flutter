@@ -6,15 +6,16 @@ void main() {
   const MethodChannel channel = MethodChannel('faketooth');
 
   TestWidgetsFlutterBinding.ensureInitialized();
+  var binding = TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
 
   setUp(() {
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '42';
+    binding.setMockMethodCallHandler(channel, (message) async {
+        return '42';
     });
   });
 
   tearDown(() {
-    channel.setMockMethodCallHandler(null);
+    binding.setMockMethodCallHandler(channel, null);
   });
 
   test('getPlatformVersion', () async {

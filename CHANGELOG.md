@@ -1,3 +1,9 @@
+## 0.1.2
+Minor changes, updated documentation.
+
+## 0.1.1
+Null safety
+
 ## 0.0.25
 Added value handlers for Characteristic and Descriptor classes.
 
