@@ -1,17 +1,13 @@
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint faketooth.podspec' to validate before publishing.
-#
 Pod::Spec.new do |s|
-  s.name             = 'faketooth'
-  s.version          = '0.1.1'
-  s.summary          = 'A new flutter plugin project.'
+  s.name             = 'faketooth_flutter_ios'
+  s.version          = '0.1.2'
+  s.summary          = 'Faketooth - BLE emulator'
   s.description      = <<-DESC
-A new flutter plugin project.
+A flutter plugin for emulating BLE device
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://github.com/rozd/faketooth-flutter'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Max Rozdobudko' => 'max.rozdobudko@gmail.com' }
   s.source           = { :path => '.' }
   s.source_files     = ['Classes/**/*', 'Vendor/Faketooth/Sources/Faketooth-ObjC/*']
   s.dependency 'Flutter'
