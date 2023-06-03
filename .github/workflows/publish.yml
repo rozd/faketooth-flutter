@@ -8,4 +8,16 @@ on:
 
 jobs:
   publish:
-    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+    permissions:
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: flutter-actions/setup-flutter@v2
+        with:
+          channel: stable
+          version: 3.0.2
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Publish
+        run: flutter pub publish --force
