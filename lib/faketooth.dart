@@ -1,7 +1,6 @@
 library faketooth;
 
 import 'dart:async';
-
 import 'package:flutter/services.dart';
 
 part 'faketooth_peripheral.dart';
@@ -11,11 +10,8 @@ part 'faketooth_descriptor.dart';
 part 'faketooth_delay_settings.dart';
 part 'faketooth_advertisement_data.dart';
 
+/// A class that provides methods for simulating Bluetooth Low Energy (BLE) devices and interactions.
 class Faketooth {
-
-  // MARK: Shared instance
-
-  static final Faketooth shared = Faketooth._internal();
 
   // MARK: Properties
 
@@ -23,8 +19,10 @@ class Faketooth {
 
   List<FaketoothPeripheral>? _simulatedPeripherals;
 
-  // MARK: Constructors
+  /// A singleton instance of the `Faketooth` class.
+  static final Faketooth shared = Faketooth._internal();
 
+  /// Constructs a new instance of the `Faketooth` class.
   factory Faketooth() {
     return shared;
   }
@@ -33,34 +31,35 @@ class Faketooth {
     _channel.setMethodCallHandler(handleMethodCall);
   }
 
-  // MARK: Methods
-
+  /// Returns a flag indicating if BLE simulation is enabled.
   Future<bool> get isSimulated async {
     return await _channel.invokeMethod('isSimulated') ?? false;
   }
 
+  /// Returns the platform plugin version.
   Future<String?> get platformVersion async {
     final String? version = await _channel.invokeMethod('getPlatformVersion');
     return version;
   }
 
+  /// Sets the list of simulated peripherals.
   Future<void> setSimulatedPeripherals(List<FaketoothPeripheral> value) async {
     _simulatedPeripherals = value;
-    await _channel.invokeMethod('setSimulatedPeripherals', _simulatedPeripherals!.map((value) => value.toArguments()).toList());
+    await _channel.invokeMethod(
+        'setSimulatedPeripherals', _simulatedPeripherals!.map((value) => value.toArguments()).toList());
   }
 
+  /// Sets the delay settings for BLE interactions.
   Future<void> setSettings({required FaketoothDelaySettings delay}) async {
     await _channel.invokeMethod("setDelaySettings", delay.toArguments());
   }
-
-  // MARK: Handlers
 
   Future<dynamic> handleMethodCall(MethodCall call) async {
     switch (call.method) {
       case "getValueForCharacteristic":
         var characteristic = findCharacteristic(
-            peripheral: call.arguments['peripheral'],
-            uuid: call.arguments['uuid']
+          peripheral: call.arguments['peripheral'],
+          uuid: call.arguments['uuid']
         );
         if (characteristic?.valueProducer == null) {
           return null;
@@ -85,10 +84,10 @@ class Faketooth {
           return null;
         }
         return await descriptor!.valueProducer!();
-      case "setValueForCharacteristic":
+      case "setValueForDescriptor":
         final descriptor = findDescriptor(
-            peripheral: call.arguments['peripheral'],
-            uuid: call.arguments['uuid']
+          peripheral: call.arguments['peripheral'],
+          uuid: call.arguments['uuid']
         );
         final valueHandler = descriptor?.valueHandler;
         if (valueHandler != null) {
@@ -100,10 +99,7 @@ class Faketooth {
     }
   }
 
-}
-
-extension on Faketooth {
-
+  /// Finds a characteristic based on the peripheral identifier and characteristic UUID.
   FaketoothCharacteristic? findCharacteristic({required String peripheral, required String uuid}) {
     if (_simulatedPeripherals?.isNotEmpty == false) {
       return null;
@@ -125,6 +121,7 @@ extension on Faketooth {
     return null;
   }
 
+  /// Finds a descriptor based on the peripheral identifier and descriptor UUID.
   FaketoothDescriptor? findDescriptor({required String peripheral, required String uuid}) {
     if (_simulatedPeripherals?.isNotEmpty == false) {
       return null;
