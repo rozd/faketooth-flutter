@@ -1,3 +1,6 @@
+## 0.2.0
+Fixed `setValueForDescriptor` handler. Added code documentation. 
+
 ## 0.1.2
 Minor changes, updated documentation.
 

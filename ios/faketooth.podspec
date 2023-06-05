@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'faketooth_flutter_ios'
-  s.version          = '0.1.2'
+  s.version          = '0.2.0'
   s.summary          = 'Faketooth - BLE emulator'
   s.description      = <<-DESC
 A flutter plugin for emulating BLE device
