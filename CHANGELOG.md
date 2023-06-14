@@ -1,3 +1,6 @@
+## 0.2.1
+Updates iOS podspec
+
 ## 0.2.0
 Fixed `setValueForDescriptor` handler. Added code documentation. 
 

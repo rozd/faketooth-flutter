@@ -8,7 +8,7 @@ To use the Faketooth Flutter Plugin, you need to add it as a dependency in your 
 
 ```yaml
 dependencies:
-  faketooth_flutter: ^0.2.0
+  faketooth_flutter: ^0.2.1
 ```
 
 Then, run `flutter pub get` to fetch the plugin.

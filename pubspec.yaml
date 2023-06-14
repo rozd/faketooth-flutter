@@ -2,7 +2,7 @@ name: faketooth
 description: The Faketooth Flutter Plugin allows you to emulate a Bluetooth Low 
   Energy (BLE) device on iOS, macOS, watchOS, and tvOS targets from within your 
   Flutter applications
-version: 0.2.0
+version: 0.2.1
 homepage: https://github.com/rozd/faketooth-flutter
 
 environment:
